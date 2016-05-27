@@ -16,7 +16,6 @@ pub struct HoursData  {
     // touched: String,
 }
 
-
 fn get_hours() -> Result<Vec<HoursData>, Error> {
     let mut file = try!(File::open("hours.json"));
     let mut text = String::new();
@@ -26,7 +25,6 @@ fn get_hours() -> Result<Vec<HoursData>, Error> {
 }
 
 fn write_hours(hours: &Vec<HoursData>) -> Result<(), Error> {
-  
   let mut f = try!(File::create("hours.json"));
   let encoded = json::encode(&hours).unwrap();
   try!(f.write_all(encoded.as_bytes()));
@@ -38,7 +36,7 @@ fn list_hours(hours: &Vec<HoursData>) -> Result<(), Error> {
     println!("TICKET            TIME            DESC        STATUS");
     for x in hours.iter() {
         // let this_hour = hours[x];
-        println!("{}         {}          {}     {}", x.ticket, x.time, x.description, x.status);
+        println!("{}         {}          {}        {}", x.ticket, x.time, x.description, x.status);
     }
     Ok(())
 }
